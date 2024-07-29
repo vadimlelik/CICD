@@ -14,12 +14,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3  # Обновлено до v3
+        uses: actions/checkout@v3  # Убедитесь, что версия v3 используется
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3  # Обновлено до v3
+        uses: actions/setup-node@v3  # Убедитесь, что версия v3 используется
         with:
-          node-version: '16'
+          node-version: '20'  # Обновлено до Node.js 20
 
       - name: Install dependencies
         run: npm install
