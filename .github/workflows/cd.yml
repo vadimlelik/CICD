@@ -31,8 +31,12 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            cd ./
-            ls -al
+            mkdir -p /path/to/your/app
+            
+            scp -i ${{ secrets.SSH_PRIVATE_KEY }} -r ./* ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}:/path/to/your/app
+
+            cd /path/to/your/app
+            
             docker-compose down
             docker-compose pull
             docker-compose up -d
