@@ -32,6 +32,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             cd ./
+            ls -al
             docker-compose down
             docker-compose pull
             docker-compose up -d
