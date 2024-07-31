@@ -31,7 +31,7 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            cd ~/Downloads/CICD
+            cd /Users/vadim/Downloads/CICD/docker-compose.yml
             docker-compose down
             docker-compose pull
             docker-compose up -d
