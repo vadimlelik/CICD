@@ -1,5 +1,9 @@
 name: Build and Deploy to VPS via Docker Hub
 
+with:
+  context: .
+  file: ./Dockerfile
+
 on:
   push:
     branches:
