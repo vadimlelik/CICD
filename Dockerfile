@@ -1,15 +1,26 @@
-# Stage 1: build
-FROM node:18 AS build
+# Используем Node.js для сборки
+FROM node:22-alpine AS builder
 
 WORKDIR /app
-COPY ./frontend/package.json ./frontend/package-lock.json ./
+
+# Копируем package.json и package-lock.json из frontend
+COPY frontend/package*.json ./
+
+# Устанавливаем зависимости
 RUN npm install
-COPY ./frontend ./
+
+# Копируем весь фронтенд-код
+COPY frontend/ .
+
+# Собираем проект
 RUN npm run build
 
-# Stage 2: production
+# Создаем финальный образ на базе nginx
 FROM nginx:alpine
 
-COPY --from=build /app/dist /usr/share/nginx/html
+# Копируем собранные файлы из builder в nginx
+COPY --from=builder /app/dist /usr/share/nginx/html
+
 EXPOSE 80
+
 CMD ["nginx", "-g", "daemon off;"]
